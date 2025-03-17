@@ -183,6 +183,15 @@ git commit -m "feat: test"
 git push
 ```
 
+:::danger[git push总失败/超时]
+特别注意，如果你像我这样有多个密钥。git push可能总是报错。先确定你要push的仓库是哪个账号的，然后在config中找到对应的配置正确配置和远程仓库的链接。
+
+`git remote`不能用https，必须用ssh，例如下面的`two.github.com`：
+```cmd
+git remote set-url origin git@two.github.com:用户名/仓库名.git
+```
+:::
+
 Vscode 请求你们授权，你们就一路点绿色按钮，授权完成，最后页面如果没有跳转，点击它提供的超链接回到 VScode。
 
 ![s300](../../../assets/images/73.png)

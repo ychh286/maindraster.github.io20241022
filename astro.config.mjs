@@ -56,6 +56,7 @@ export default defineConfig({
       './src/styles/search.css', 
     './src/styles/iconfont.css', 
     './src/styles/picsize.css',
+    './src/styles/product.css'
     ],
     social: {
       github: 'https://github.com/maindraster/maindraster.github.io',
@@ -124,6 +125,12 @@ export default defineConfig({
         label: '项目实战篇',
         slug: 'project/index_pro'
       },],
+    },{
+      label: '我的小产品',
+      slug: 'product'
+    },{
+      label: '友链接',
+      slug: 'friend'
     }
     ],
   }), 
