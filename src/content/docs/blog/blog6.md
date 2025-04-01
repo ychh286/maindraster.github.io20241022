@@ -3,7 +3,6 @@ title: 提示词工程，不，说话
 date: 2024-12-16
 tags: 
     - 技术
-featured: true
 ---
 <center class="aspect-ratio" >
 <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=113672349291297&bvid=BV1bTkFY4E2s&cid=27399749781&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>

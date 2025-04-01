@@ -74,7 +74,7 @@ export default defineConfig({
       collapsed: true,
       items: [{
         label: '首页',
-        slug: 'train/tr_index'
+        slug: 'tr_index'
       },{
         label: '基础教程',
         autogenerate: {
