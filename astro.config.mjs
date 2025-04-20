@@ -11,7 +11,7 @@ import vercel from '@astrojs/vercel';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://maindraster.netlify.app',
+  site: 'https://www.indratang.top',
   base: "/",
 
   image: {
@@ -58,10 +58,11 @@ export default defineConfig({
     './src/styles/picsize.css',
     './src/styles/product.css'
     ],
-    social: {
-      github: 'https://github.com/maindraster/maindraster.github.io',
-      youtube: 'https://space.bilibili.com/3546706348084176'
-    },
+    social: [
+      { label: 'GitHub', icon: 'github', href: 'https://github.com/maindraster/maindraster.github.io' },
+      { label: 'BiliBili', icon: 'youtube', href: 'https://space.bilibili.com/3546706348084176' },
+      // 其他社交链接...
+    ],
     components: {
       Header: "./src/components/Myheader.astro",
       MarkdownContent: "./src/components/MarkdownContent.astro",

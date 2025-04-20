@@ -3,10 +3,16 @@ import { SOCIALS } from "../data/socials";
 import Layout from "../layouts/Layout.astro";
 import Drawer from "../components/Drawer.astro";
 import Component from "../components/Component.astro";
+import UpdateModal from '../components/UpdateModal.astro';
+import { updateHistory } from '../data/updates';
 
 import IconCursor from "../icons/cursor.astro";
 import IconAt from "../icons/at.astro";
 import IconArrow from "../icons/arrow.astro";
+
+// 获取最新的更新信息
+const latestUpdate = updateHistory[0];
+
 ---
 
 <Layout title="Indra | 万能工坊">
@@ -225,5 +231,28 @@ import IconArrow from "../icons/arrow.astro";
       </a>
     </div>
     <Drawer />
+    <!-- <button
+      id="openUpdateModal"
+      class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+    >
+      查看更新日志
+    </button> -->
+    <UpdateModal updates={updateHistory} />
   </main>
 </Layout>
+
+<style>
+  /* 可以添加一些过渡动画 */
+  #updateModal {
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  #updateModal.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  #updateModal:not(.hidden) {
+    opacity: 1;
+  }
+</style>

@@ -1,4 +1,4 @@
-import { AstroError } from 'astro/errors'
+//import { AstroError } from 'astro/errors'
 import { z, type ZodLiteral, type ZodNumber, type ZodObject, type ZodString, type ZodUnion } from 'astro/zod'
 
 // 定义博客作者 schema
@@ -104,14 +104,14 @@ export const blogEntrySchema = ({ image }: SchemaContext) =>
 export function combinedSchema(context: SchemaContext) {
   // 检查上下文以提供更好的迁移错误消息
   if (!context) {
-    throw new AstroError(
-      'Missing schema validation context.',
-      `You may need to update your content collections configuration in the \`src/content.config.ts\` file and pass the context to the schema function:
+//     throw new AstroError(
+//       'Missing schema validation context.',
+//       `You may need to update your content collections configuration in the \`src/content.config.ts\` file and pass the context to the schema function:
 
-\`docs: defineCollection({ loader: docsLoader(), schema: docsSchema({ extend: (context) => combinedSchema(context) }) })\`
+// \`docs: defineCollection({ loader: docsLoader(), schema: docsSchema({ extend: (context) => combinedSchema(context) }) })\`
 
-If you believe this is a bug, please file an issue at https://github.com/HiDeoo/starlight-blog/issues/new/choose`,
-    )
+// If you believe this is a bug, please file an issue at https://github.com/HiDeoo/starlight-blog/issues/new/choose`,
+//     )
   }
 
   // 返回合并了 blog 和 topic 属性的 schema
