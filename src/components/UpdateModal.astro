@@ -1,14 +1,14 @@
 ---
+import type { HTMLAttributes } from 'astro/types';
+
 interface Update {
   version: string;
   date: string;
   title: string;
-  buttonText: string;
-  buttonUrl: string;
   updates: string[];
 }
 
-interface Props {
+interface Props extends HTMLAttributes<'div'> {
   updates: Update[];
 }
 
