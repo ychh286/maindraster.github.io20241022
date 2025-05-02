@@ -66,15 +66,13 @@ function parseUpdate(update: string) {
         </svg>
       </button>
     </div>
-    
-    <!-- 修改可滚动的内容区域 -->
     <div class="max-h-[400px] overflow-y-auto pr-2">
       {updates.map((update) => (
         <div class="mb-6 last:mb-0">
           <div class="flex justify-between items-center mb-2">
             <div class="flex items-center gap-4">
               <h4 class="text-lg font-semibold text-gray-900 dark:text-white">
-                {update.version} {update.title}
+                {update.version}
               </h4>
               <p class="text-sm text-gray-500 dark:text-gray-400">{update.date}</p>
             </div>

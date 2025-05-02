@@ -5,9 +5,9 @@ import remarkMath from "remark-math";
 import rehypeMathjax from 'rehype-mathjax';
 import starlightBlog from 'starlight-blog'
 import starlightGiscus from 'starlight-giscus'
-
 import tailwind from "@astrojs/tailwind";
 import vercel from '@astrojs/vercel';
+import starlightFullViewMode from 'starlight-fullview-mode'
 
 // https://astro.build/config
 export default defineConfig({
@@ -20,6 +20,7 @@ export default defineConfig({
 
   integrations: [starlight({
     plugins: [
+      starlightFullViewMode({  leftSidebarEnabled: false,  rightSidebarEnabled: false}),
       starlightGiscus({
         repo: 'maindraster/docgiscus',
         repoId: 'R_kgDON-oOVQ',
@@ -64,8 +65,9 @@ export default defineConfig({
       // 其他社交链接...
     ],
     components: {
-      Header: "./src/components/Myheader.astro",
+      Header: './src/components/Header.astro',
       MarkdownContent: "./src/components/MarkdownContent.astro",
+      Highlight: "./src/components/Highlight.astro",
     },
     sidebar: [{
       label: '开篇文档',
@@ -126,12 +128,6 @@ export default defineConfig({
         label: '项目实战篇',
         slug: 'project/index_pro'
       },],
-    },{
-      label: '我的小产品',
-      slug: 'product'
-    },{
-      label: '友链接',
-      slug: 'friend'
     }
     ],
   }), 

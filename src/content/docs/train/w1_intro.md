@@ -9,7 +9,7 @@ lastUpdated: 2024-09-11
 </center>
 
 <div class="container-pdf">
-<embed src="https://maindraster.github.io/pdf/Introduction.pdf" type="application/pdf" width="100%" height="100%" />
+<embed src="/pdf/introduction.pdf" type="application/pdf" width="100%" height="100%" />
 </div>
 
 <div class="container-icon">

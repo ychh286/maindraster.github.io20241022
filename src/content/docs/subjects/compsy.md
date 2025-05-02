@@ -43,3 +43,20 @@ lastupdate: 2025-04-14
 - Media psychology is the scientific study of human behavior, thoughtsand feelings experienced in the context of media use and creation.Editor, Oxford handbook of Media Psychology.
 - Media Psychology can be described as the merging of communicationand human behavior. It is central to understanding behavior with- inmany disciplines, including, in part, technology; public policy andgovernment; telecommunications; soft- ware; education; health care;and entertainment.-APA 46th division
 :::
+
+## 第二讲：信息的选择与加工
+
+### 媒介的认知和情绪：信息的选择与加工，情绪
+
+- 知觉：眼见为实？视觉功能还是脑功能。
+  - [经典广告案例](https://www.digitaling.com/articles/103907.html)
+:::tip[冷热咖啡实验与社交技巧]
+拿热咖啡的人更倾向于认为陌生人性格温暖友好，而拿冰咖啡的人则更倾向于认为陌生人冷漠。
+
+因此给出策略：强而温暖的握手不仅让人觉得对方可靠，还能暗示友好的关系建立。
+:::
+  - 似动现象：[Youtube视频](https://www.youtube.com/watch?v=-zbzt7Cb2e4)
+  - 格式塔理论（格式塔，意即“模式、形状”，意思指动态的整体，主张人脑的运作原理属于整体论）：雷碧、康帅傅
+  - 知觉的恒常性：[大小恒常](https://baike.baidu.com/item/%E5%A4%A7%E5%B0%8F%E6%81%92%E5%B8%B8%E6%80%A7)、[形状恒常](https://baike.baidu.com/item/%E5%BD%A2%E7%8A%B6%E6%81%92%E5%B8%B8%E6%80%A7)、[颜色恒常](https://baike.baidu.com/item/%E9%A2%9C%E8%89%B2%E6%81%92%E5%B8%B8%E6%80%A7)
+
+

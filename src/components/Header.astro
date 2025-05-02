@@ -1,0 +1,467 @@
+---
+import LanguageSelect from "@astrojs/starlight/components/LanguageSelect.astro";
+import Search from "@astrojs/starlight/components/Search.astro";
+import SiteTitle from "@astrojs/starlight/components/SiteTitle.astro";
+import SocialIcons from "@astrojs/starlight/components/SocialIcons.astro";
+import ThemeSelect from "@astrojs/starlight/components/ThemeSelect.astro";
+// Use the image zoom, can be rendered anywhere
+import ImageZoom from "starlight-image-zoom/components/ImageZoom.astro";
+/**
+ * Render the `Search` component if Pagefind is enabled or the default search component has been overridden.
+ */
+const shouldRenderSearch = '@astrojs/starlight/components/Search.astro';
+
+// 导航菜单项
+const navItems = [
+  {
+    title: "文档",
+    items: [
+      { name: "万能工科生教程", href: "/tr_index" },
+      { name: "篇章学习", href: "/electronics/index_ecd/" },
+    ]
+  },
+  {
+    title: "博客",
+    items: [
+      { name: "博客", href: "/blog" },
+      { name: "天下学科", href: "/blog/blog10" },
+	  { name: "图书馆", href: "/blog/blog7" },
+    ]
+  },
+  {
+    title: "更多",
+    items: [
+	  { name: "小产品", href: "/product" },
+      { name: "友链", href: "/friend" },
+    ]
+  },
+];
+---
+
+<ImageZoom />
+<div class="header sl-flex">
+	<div class="title-wrapper sl-flex">
+		<SiteTitle />
+	</div>
+	
+	<!-- 桌面导航菜单 -->
+	<nav class="nav-menu sl-flex print:hidden desktop-nav">
+		{navItems.map((category) => (
+		  <div class="dropdown-wrapper">
+			<button class="dropdown-trigger">
+			  {category.title}
+			  <svg 
+				class="dropdown-arrow" 
+				width="10" 
+				height="6" 
+				viewBox="0 0 10 6" 
+				fill="none"
+			  >
+				<path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+			  </svg>
+			</button>
+			<div class="dropdown-menu">
+			  <div class="dropdown-content">
+				{category.items.map((item) => (
+				  <a href={item.href} class="dropdown-item">
+					{item.name}
+				  </a>
+				))}
+			  </div>
+			</div>
+		  </div>
+		))}
+	</nav>
+	
+	<!-- 移动端汉堡菜单按钮 -->
+	<button id="mobile-menu-toggle" class="mobile-menu-toggle print:hidden" aria-label="菜单">
+		<span class="hamburger-icon">
+			<span class="hamburger-line"></span>
+			<span class="hamburger-line"></span>
+			<span class="hamburger-line"></span>
+		</span>
+	</button>
+	
+	<div class="sl-flex print:hidden search-container">
+		{shouldRenderSearch && <Search />}
+	</div>
+	<div class="sl-hidden md:sl-flex print:hidden right-group">
+		<div class="sl-flex social-icons">
+			<SocialIcons />
+		</div>
+		<ThemeSelect />
+		<LanguageSelect />
+	</div>
+</div>
+
+<!-- 移动端导航菜单 -->
+<div id="mobile-nav" class="mobile-nav print:hidden">
+	<div class="mobile-nav-container">
+		{navItems.map((category) => (
+			<div class="mobile-category">
+				<button class="mobile-category-title">
+					{category.title}
+					<svg 
+						class="mobile-dropdown-arrow" 
+						width="12" 
+						height="8" 
+						viewBox="0 0 10 6" 
+						fill="none"
+					>
+						<path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+					</svg>
+				</button>
+				<div class="mobile-category-items">
+					{category.items.map((item) => (
+						<a href={item.href} class="mobile-nav-item">
+							{item.name}
+						</a>
+					))}
+				</div>
+			</div>
+		))}
+		<div class="mobile-nav-bottom">
+			<div class="mobile-social-icons">
+				<SocialIcons />
+			</div>
+			<div class="mobile-theme-language">
+				<ThemeSelect />
+				<LanguageSelect />
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	// 移动端菜单交互逻辑
+	document.addEventListener('DOMContentLoaded', () => {
+		const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+		const mobileNav = document.getElementById('mobile-nav');
+		const mobileCategoryTitles = document.querySelectorAll('.mobile-category-title');
+		
+		// 汉堡菜单点击事件
+		mobileMenuToggle?.addEventListener('click', () => {
+			mobileMenuToggle.classList.toggle('active');
+			mobileNav?.classList.toggle('open');
+			document.body.classList.toggle('mobile-menu-open');
+		});
+		
+		// 移动端分类菜单点击展开/收起
+		mobileCategoryTitles.forEach(title => {
+			title.addEventListener('click', () => {
+				const parent = title.parentElement;
+				parent?.classList.toggle('active');
+			});
+		});
+		
+		// 点击导航项后关闭菜单
+		const mobileNavItems = document.querySelectorAll('.mobile-nav-item');
+		mobileNavItems.forEach(item => {
+			item.addEventListener('click', () => {
+				mobileMenuToggle?.classList.remove('active');
+				mobileNav?.classList.remove('open');
+				document.body.classList.remove('mobile-menu-open');
+			});
+		});
+	});
+</script>
+
+<style>
+	.header {
+		gap: var(--sl-nav-gap);
+		justify-content: space-between;
+		align-items: center;
+		height: 100%;
+	}
+
+	.title-wrapper {
+		/* Prevent long titles overflowing and covering the search and menu buttons on narrow viewports. */
+		overflow: clip;
+		/* Avoid clipping focus ring around link inside title wrapper. */
+		padding: 0.25rem;
+		margin: -0.25rem;
+		min-width: 0;
+	}
+
+	.right-group,
+	.social-icons {
+		gap: 1rem;
+		align-items: center;
+	}
+	.social-icons::after {
+		content: '';
+		height: 2rem;
+		border-inline-end: 1px solid var(--sl-color-gray-5);
+	}
+
+	/* 桌面导航菜单样式 */
+	.nav-menu {
+		gap: 0.5rem;
+		align-items: center;
+	}
+	
+	.desktop-nav {
+		@media (max-width: 50rem) {
+			display: none;
+		}
+	}
+
+	.dropdown-wrapper {
+		position: relative;
+	}
+
+	.dropdown-trigger {
+		display: flex;
+		align-items: center;
+		gap: 0.25rem;
+		padding: 0.5rem;
+		color: var(--sl-color-gray-1);
+		font-size: 0.9375rem;
+		background: none;
+		border: none;
+		cursor: pointer;
+		transition: color 0.2s ease;
+	}
+
+	.dropdown-trigger:hover {
+		color: var(--sl-color-text-accent);
+	}
+
+	/* 添加一个中间容器，增加可点击区域 */
+	.dropdown-menu {
+		position: absolute;
+		top: 100%;
+		left: 50%;
+		transform: translateX(-50%);
+		padding-top: 0.5rem; /* 创建一个缓冲区 */
+		opacity: 0;
+		visibility: hidden;
+		pointer-events: none;
+		transition: opacity 0.2s ease, visibility 0.2s ease;
+		z-index: 100;
+	}
+
+	.dropdown-content {
+		min-width: 180px;
+		padding: 0.5rem 0;
+		background: var(--sl-color-bg-nav);
+		border: 1px solid var(--sl-color-gray-5);
+		border-radius: 0.5rem;
+		box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+	}
+
+	/* 使用更可靠的悬停检测 */
+	.dropdown-wrapper:hover .dropdown-menu {
+		opacity: 1;
+		visibility: visible;
+		pointer-events: auto;
+		animation: fadeIn 0.2s ease;
+	}
+
+	.dropdown-item {
+		display: block;
+		padding: 0.5rem 1rem;
+		color: var(--sl-color-gray-2);
+		font-size: 0.9375rem;
+		text-decoration: none;
+		transition: all 0.2s ease;
+	}
+
+	.dropdown-item:hover {
+		background-color: var(--sl-color-gray-6);
+		color: var(--sl-color-white);
+	}
+
+	@keyframes slideDown {
+		from {
+			opacity: 0;
+			transform: translateX(-50%) translateY(-10px);
+		}
+		to {
+			opacity: 1;
+			transform: translateX(-50%) translateY(0);
+		}
+	}
+	
+	/* 移动端汉堡菜单按钮 */
+	.mobile-menu-toggle {
+		display: none;
+		background: none;
+		border: none;
+		cursor: pointer;
+		padding: 0.5rem;
+		margin-right: 0.5rem;
+		z-index: 101;
+		
+		@media (max-width: 50rem) {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+	}
+	
+	.hamburger-icon {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		width: 24px;
+		height: 18px;
+	}
+	
+	.hamburger-line {
+		display: block;
+		width: 100%;
+		height: 2px;
+		background-color: var(--sl-color-gray-1);
+		border-radius: 2px;
+		transition: all 0.3s ease;
+	}
+	
+	.mobile-menu-toggle.active .hamburger-line:nth-child(1) {
+		transform: translateY(8px) rotate(45deg);
+	}
+	
+	.mobile-menu-toggle.active .hamburger-line:nth-child(2) {
+		opacity: 0;
+	}
+	
+	.mobile-menu-toggle.active .hamburger-line:nth-child(3) {
+		transform: translateY(-8px) rotate(-45deg);
+	}
+	
+	/* 移动端导航菜单 */
+	.mobile-nav {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100vh;
+		background-color: var(--sl-color-bg);
+		z-index: 100;
+		padding-top: 4rem;
+		overflow-y: auto;
+		transform: translateX(-100%);
+		transition: transform 0.3s ease;
+		display: none;
+		
+		@media (max-width: 50rem) {
+			display: block;
+		}
+	}
+	
+	.mobile-nav.open {
+		transform: translateX(0);
+	}
+	
+	.mobile-nav-container {
+		padding: 1rem;
+	}
+	
+	.mobile-category {
+		margin-bottom: 1rem;
+		border-bottom: 1px solid var(--sl-color-gray-5);
+	}
+	
+	.mobile-category-title {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		width: 100%;
+		padding: 1rem 0;
+		font-size: 1.125rem;
+		font-weight: 600;
+		color: var(--sl-color-gray-1);
+		background: none;
+		border: none;
+		cursor: pointer;
+	}
+	
+	.mobile-dropdown-arrow {
+		transition: transform 0.3s ease;
+	}
+	
+	.mobile-category.active .mobile-dropdown-arrow {
+		transform: rotate(180deg);
+	}
+	
+	.mobile-category-items {
+		display: none;
+		padding-bottom: 1rem;
+	}
+	
+	.mobile-category.active .mobile-category-items {
+		display: block;
+	}
+	
+	.mobile-nav-item {
+		display: block;
+		padding: 0.75rem 1rem;
+		color: var(--sl-color-gray-2);
+		font-size: 1rem;
+		text-decoration: none;
+		border-radius: 0.25rem;
+		transition: all 0.2s ease;
+	}
+	
+	.mobile-nav-item:hover {
+		background-color: var(--sl-color-gray-6);
+		color: var(--sl-color-white);
+	}
+	
+	.mobile-nav-bottom {
+		margin-top: 2rem;
+		padding-top: 1rem;
+		border-top: 1px solid var(--sl-color-gray-5);
+	}
+	
+	.mobile-social-icons {
+		display: flex;
+		gap: 1rem;
+		margin-bottom: 1.5rem;
+	}
+	
+	.mobile-theme-language {
+		display: flex;
+		gap: 1rem;
+		flex-wrap: wrap;
+	}
+	
+	/* 防止滚动 */
+	body.mobile-menu-open {
+		overflow: hidden;
+	}
+
+	/* 保持原有的响应式布局 */
+	@media (min-width: 50rem) {
+		:global(:root[data-has-sidebar]) {
+			--__sidebar-pad: calc(2 * var(--sl-nav-pad-x));
+		}
+		:global(:root:not([data-has-toc])) {
+			--__toc-width: 0rem;
+		}
+		.header {
+			--__sidebar-width: max(0rem, var(--sl-content-inline-start, 0rem) - var(--sl-nav-pad-x));
+			--__main-column-fr: calc(
+				(
+						100% + var(--__sidebar-pad, 0rem) - var(--__toc-width, var(--sl-sidebar-width)) -
+							(2 * var(--__toc-width, var(--sl-nav-pad-x))) - var(--sl-content-inline-start, 0rem) -
+							var(--sl-content-width)
+					) / 2
+			);
+			display: grid;
+			grid-template-columns:
+				/* 1 (site title): 站点标题 */
+				minmax(
+					calc(var(--__sidebar-width) + max(0rem, var(--__main-column-fr) - var(--sl-nav-gap))),
+					auto
+				)
+				/* 2 (导航菜单): 导航菜单 */
+				auto
+				/* 3 (search box): 搜索框 */
+				1fr
+				/* 4 (right items): 右侧项目 */
+				auto;
+			align-content: center;
+		}
+	}
+</style>

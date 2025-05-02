@@ -9,10 +9,6 @@ import { updateHistory } from '../data/updates';
 import IconCursor from "../icons/cursor.astro";
 import IconAt from "../icons/at.astro";
 import IconArrow from "../icons/arrow.astro";
-
-// 删除未使用的变量声明
-// const latestUpdate = updateHistory[0];
-
 ---
 
 <Layout title="Indra | 万能工坊">
@@ -70,7 +66,8 @@ import IconArrow from "../icons/arrow.astro";
         <p
           class="flex gap-2 font-roboto-condensed font-normal text-sm text-rose-700 sm:text-inherit sm:group-hover:text-rose-700"
         >
-          B站 <a
+          B站 
+          <a
             data-ccursor
             href="https://space.bilibili.com/3546706348084176"
             target="_blank"
