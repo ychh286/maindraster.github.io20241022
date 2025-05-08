@@ -15,5 +15,7 @@
     "starlightBlog.sidebar.authors": "Authors",
     "starlightBlog.sidebar.rss": "RSS",
     "starlightBlog.tags.count_one": "{{count}} post with the tag “{{tag}}”",
-    "starlightBlog.tags.count_other": "{{count}} 个帖子使用标签 “{{tag}}”"
+    "starlightBlog.tags.count_other": "{{count}} 个帖子使用标签 “{{tag}}”",
+    "starlight-site-graph.graph":"图表",
+    "starlight-site-graph.backlinks":"反向链接"
   }

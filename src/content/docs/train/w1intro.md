@@ -2,6 +2,7 @@
 title: W1 频道介绍
 description: 介绍本免费频道的主要内容
 lastUpdated: 2024-09-11
+tags: [基础教程]
 ---
 
 <center class="aspect-ratio" >

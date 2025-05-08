@@ -8,6 +8,7 @@ import starlightGiscus from 'starlight-giscus'
 import tailwind from "@astrojs/tailwind";
 import vercel from '@astrojs/vercel';
 import starlightFullViewMode from 'starlight-fullview-mode'
+import starlightSiteGraph from 'starlight-site-graph'
 
 // https://astro.build/config
 export default defineConfig({
@@ -20,7 +21,45 @@ export default defineConfig({
 
   integrations: [starlight({
     plugins: [
-      starlightFullViewMode({  leftSidebarEnabled: false,  rightSidebarEnabled: false}),
+      starlightSiteGraph({
+        debug: false,
+					graphConfig: {
+						depth: 1,
+						scale: 1,
+						labelOpacityScale: 1.5,
+						labelFontSize: 11,
+						labelHoverScale: 1.3,
+						renderArrows: true,
+						tagRenderMode: 'same',
+						actions: ['fullscreen', 'depth', 'reset-zoom', 'render-arrows', 'render-external', 'settings'],
+						nodeDefaultStyle: {
+							shape: 'star',
+							cornerType: 'round',
+							shapeCornerRadius: "25%",
+							nodeScale: 1.6,
+							neighbourScale: 30.0,
+							shapeRotation: 'random',
+						},
+						nodeExternalStyle: {
+							shape: 'star',
+							shapePoints: 4,
+							nodeScale: 0.9,
+						},
+						nodeVisitedStyle: {
+							nodeScale: 1.1,
+						},
+						nodeCurrentStyle: {
+							shapePoints: 6,
+							nodeScale: 2.2,
+							shapeRotation: 0,
+							colliderScale: 1.4
+						}
+					},
+					sitemapConfig: {
+						includeExternalLinks: true
+					}
+      }),
+      //starlightFullViewMode({  leftSidebarEnabled: false,  rightSidebarEnabled: false}),
       starlightGiscus({
         repo: 'maindraster/docgiscus',
         repoId: 'R_kgDON-oOVQ',
@@ -77,7 +116,7 @@ export default defineConfig({
       collapsed: true,
       items: [{
         label: '首页',
-        slug: 'tr_index'
+        slug: 'trindex'
       },{
         label: '基础教程',
         autogenerate: {
@@ -101,7 +140,7 @@ export default defineConfig({
       collapsed: true,
       items: [{
         label: '电子电路设计篇',
-        slug: 'electronics/index_ecd'
+        slug: 'electronics/indexecd'
       },{
         label: '嵌入式开发篇',
         collapsed: true,
@@ -123,10 +162,10 @@ export default defineConfig({
         }]
       },{
         label: '人工智能篇',
-        slug: 'ai/index_ai'
+        slug: 'ai/indexai'
       },{
         label: '项目实战篇',
-        slug: 'project/index_pro'
+        slug: 'project/indexpro'
       },],
     }
     ],

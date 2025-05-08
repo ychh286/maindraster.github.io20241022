@@ -50,6 +50,14 @@ import { Steps } from '@astrojs/starlight/components';
 
 ![s300](../../../../assets/images/2ysyx2.png)
 
+:::note[EFI 分区]
+如果你是重装 Ubuntu 系统可能会看到一个几百兆的分区，告诉你无法用这种方式删除卷，那么你可以按照下面步骤三的方法来删除它。你要选择对应的磁盘和分区。在`select partition`之后输入：
+```cmd
+delete partition override
+```
+然后你再看的时候就会发现，这个分区没了。
+:::
+
 ### 步骤三：删除 Ubuntu EFI 文件
 
 win + r，输入`cmd`进入命令窗口。
