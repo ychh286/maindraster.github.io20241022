@@ -5,6 +5,10 @@ lastupdate: 2025-03-03
 
 import { Steps } from '@astrojs/starlight/components';
 
+:::note
+本篇为[理论篇](../../trainll/l1kz)的实践。
+:::
+
 啊，你就像者控制算法，我的心偏偏被你稳住了！
 
 ![s500](../../../assets/images/c1kz13.png)
@@ -83,7 +87,7 @@ import { Steps } from '@astrojs/starlight/components';
 
 下面是一个倒立摆的 level-2 S-Function 建模，让我们快速看一下代码结构。
 
-```MATLAB
+```txt
 function inverted_pendulum(block)
     % Level-2 MATLAB file S-Function for inverted pendulum dynamics
     setup(block);
@@ -186,7 +190,7 @@ $
 
 这次我们将创建一个`Matlab Function`模块来实现 PID 控制，而不是用 Simulink 中的模块搭建。它就是一个实现 PID 控制的函数，如下所示：
 
-```MATLAB
+```txt
 function f_k = pid_control(theta, d_theta, p_d_theta, p_f, k)
     % PID Controller for inverted pendulum
     % Inputs:

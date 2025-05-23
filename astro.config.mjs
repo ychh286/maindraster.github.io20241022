@@ -110,30 +110,15 @@ export default defineConfig({
     },
     sidebar: [{
       label: '开篇文档',
-      slug: 'zero2hero'
+      link: 'zero2hero'
     },{
       label: '万工教程',
-      collapsed: true,
-      items: [{
-        label: '首页',
-        slug: 'trindex'
-      },{
-        label: '基础教程',
-        autogenerate: {
-          directory: 'train'
-        }
-      },{
-        label: '理论科普',
-        autogenerate: {
-          directory: 'train_ll'
-        }
-      },{
-        label: '初级教程',
-        autogenerate: {
-          directory: 'train_cj'
-        }
-      },
-     ],
+      items: [
+        { label: '首页', link: 'frin'},
+        { label: '基础教程', autogenerate: {directory: 'train'}},
+        { label: '理论科普', autogenerate: {directory: 'trainll'}},
+        { label: '初级教程', autogenerate: {directory: 'traincj'}},
+      ],
     },
     {
       label: '篇章学习',

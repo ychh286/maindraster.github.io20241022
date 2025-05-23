@@ -1,6 +1,8 @@
 ---
 title: 人工智能篇
-lastUpdate: true
+links:
+  - /ai/dl/rumen
+  - /ai/tools/tools1
 ---
 
 :::note[本篇内容]

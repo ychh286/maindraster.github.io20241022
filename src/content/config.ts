@@ -3,20 +3,21 @@ import { docsSchema,i18nSchema } from '@astrojs/starlight/schema';
 import { docsLoader} from '@astrojs/starlight/loaders';
 import { blogSchema } from 'starlight-blog/schema';
 import { pageSiteGraphSchema } from 'starlight-site-graph/schema';
-import { combinedSchema } from './combine';
+import { combinedSchema } from './combine.ts';
+import { glob } from 'astro/loaders';
 
-const graph = defineCollection({
-	loader: docsLoader(),//glob({ pattern: "**/*.(md|mdx)", base: "./src/content/docs" }),
-	schema: docsSchema({
-		extend: combinedSchema
-	  })
-  });
+// const graph = defineCollection({
+// 	loader: docsLoader(),//,
+// 	schema: docsSchema({
+// 		extend: combinedSchema
+// 	  })
+//   });
 
 export const collections = {
 	docs: defineCollection({ 
-		loader: docsLoader(),
+		loader: docsLoader(), 
 		schema: docsSchema({ 
-		extend: (context) => blogSchema(context)
+		extend: combinedSchema //(context) => blogSchema(context)
 	}) }),
 	i18n: defineCollection({ type: 'data', schema: i18nSchema() }),
 };
