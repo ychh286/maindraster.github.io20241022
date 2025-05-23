@@ -85,7 +85,7 @@ function parseUpdate(update: string) {
                 return (
                   <li class="flex items-start gap-2">
                     {type && (
-                      <span class={`inline-flex items-center px-2 py-0.5 text-xs font-medium rounded ${badgeStyles[type] || 'bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-300'}`}>
+                      <span class={`inline-flex items-center px-2 py-0.5 text-xs font-medium rounded ${badgeStyles[type as keyof typeof badgeStyles] || 'bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-300'}`}>
                         {type}
                       </span>
                     )}
