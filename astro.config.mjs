@@ -115,7 +115,7 @@ export default defineConfig({
       label: '万工教程',
       items: [
         { label: '首页', link: 'frin'},
-        { label: '基础教程', autogenerate: {directory: 'train'}},
+        { label: '基础教程', autogenerate: {directory: 'train'}}, 
         { label: '理论科普', autogenerate: {directory: 'trainll'}},
         { label: '初级教程', autogenerate: {directory: 'traincj'}},
       ],
