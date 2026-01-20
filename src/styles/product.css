@@ -1,0 +1,93 @@
+.project-section {
+    max-width: 800px;
+    margin: 20px auto;
+    font-family: system-ui, -apple-system, sans-serif;
+    padding: 0 16px;
+  }
+  
+  .section-subtitle {
+    color: #6B7280;
+    font-size: 0.9rem;
+  }
+  
+  .project-card {
+    display: block;
+    text-decoration: none;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border: 1.2px solid #a7a7a8;
+  }
+  
+  .project-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    min-height: 100px; /* 给卡片设置最小高度 */
+  }
+  
+  .text-content {
+    flex: 1;
+    min-width: 0;
+    padding: 12px 0; /* 添加上下内边距 */
+  }
+  
+  .project-title {
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0 0 4px 0;
+    margin-left: 12px;
+    font-weight: 600;  
+    margin-bottom: 8px; /* 减小标题下方间距 */
+  }
+  
+  .project-title .external-link {
+    opacity: 0.6;
+    transition: opacity 0.2s ease;
+  }
+  
+  .project-card:hover .external-link {
+    opacity: 1;
+  }
+  .card-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.text-content {
+    flex: 1;
+    min-width: 0; /* 防止文本溢出 */
+}
+
+.card-image {
+    flex-shrink: 0;
+    width: 135px; /* 调整图片容器宽度 */
+    height: 80px; /* 调整图片容器高度 */
+    display: flex; /* 添加这行 */
+    align-items: center; /* 添加这行确保图片垂直居中 */
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.card-description{
+    margin-left: 12px;
+    font-size: 0.9rem;
+}

@@ -1,0 +1,167 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+interface Update {
+  version: string;
+  date: string;
+  title: string;
+  updates: string[];
+}
+
+interface Props extends HTMLAttributes<'div'> {
+  updates: Update[];
+}
+
+const { updates } = Astro.props;
+
+// 定义不同类型的badge样式
+const badgeStyles = {
+  '新增': 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300',
+  '升级': 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300',
+  '修复': 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300',
+  '优化': 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300',
+  '预告': 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300',
+  '删除': 'bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-300',
+};
+
+// 修改 parseUpdate 函数以确保正确匹配
+function parseUpdate(update: string) {
+  const match = update.match(/【(.*?)】(.*)/);
+  if (match) {
+    return {
+      type: match[1],
+      content: match[2].trim()
+    };
+  }
+  return {
+    type: '',
+    content: update
+  };
+}
+---
+
+<div id="updateModal" class="fixed inset-0 z-50">
+  <!-- 背景遮罩 -->
+  <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+  
+  <!-- 弹窗内容 -->
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-md bg-white dark:bg-gray-800 rounded-lg shadow-xl p-6">
+    <!-- 弹窗头部 -->
+    <div class="flex justify-between items-center mb-4">
+      <div class="flex items-center gap-4">
+        <h3 class="text-xl font-bold text-gray-900 dark:text-white">
+          更新历史
+        </h3>
+        <a
+          href="./zero2hero"
+          rel="noopener noreferrer"
+          class="px-3 py-1 text-sm bg-rose-500 text-white rounded hover:bg-rose-600 transition-colors"
+        >
+          ➡ 文档/教程
+        </a>
+      </div>
+      <button id="closeModal" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+    <div class="max-h-[400px] overflow-y-auto pr-2">
+      {updates.map((update) => (
+        <div class="mb-6 last:mb-0">
+          <div class="flex justify-between items-center mb-2">
+            <div class="flex items-center gap-4">
+              <h4 class="text-lg font-semibold text-gray-900 dark:text-white">
+                {update.version}
+              </h4>
+              <p class="text-sm text-gray-500 dark:text-gray-400">{update.date}</p>
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            <ul class="space-y-2">
+              {update.updates.map(item => {
+                const { type, content } = parseUpdate(item);
+                return (
+                  <li class="flex items-start gap-2">
+                    {type && (
+                      <span class={`inline-flex items-center px-2 py-0.5 text-xs font-medium rounded ${badgeStyles[type as keyof typeof badgeStyles] || 'bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-300'}`}>
+                        {type}
+                      </span>
+                    )}
+                    <span class="flex-1 text-gray-600 dark:text-gray-300">{content}</span>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
+
+<script>
+  const modal = document.getElementById('updateModal');
+  const closeBtn = document.getElementById('closeModal');
+  
+  // 关闭弹窗
+  function closeModal() {
+    if (modal) {
+      modal.style.display = 'none';
+    }
+  }
+
+  // 点击背景关闭弹窗
+  function handleClickOutside(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+    if (target === modal) {
+      closeModal();
+    }
+  }
+
+  // 添加事件监听
+  closeBtn?.addEventListener('click', closeModal);
+  modal?.addEventListener('click', handleClickOutside);
+
+  // 添加键盘事件监听（ESC键关闭弹窗）
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      closeModal();
+    }
+  });
+</script>
+
+<style>
+  #updateModal {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* 自定义滚动条样式 */
+  .overflow-y-auto {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(156, 163, 175, 0.5) transparent;
+  }
+
+  .overflow-y-auto::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .overflow-y-auto::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .overflow-y-auto::-webkit-scrollbar-thumb {
+    background-color: rgba(156, 163, 175, 0.5);
+    border-radius: 3px;
+  }
+</style> 

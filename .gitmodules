@@ -1,0 +1,3 @@
+[submodule "src/libs/context-cursor"]
+	path = src/libs/context-cursor
+	url = https://github.com/PavelLaptev/context-cursor.git

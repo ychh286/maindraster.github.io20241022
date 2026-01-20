@@ -1,0 +1,255 @@
+---
+import { SOCIALS } from "../data/socials";
+import Layout from "../layouts/Layout.astro";
+import Drawer from "../components/Drawer.astro";
+import Component from "../components/Component.astro";
+import UpdateModal from '../components/UpdateModal.astro';
+import { updateHistory } from '../data/updates';
+
+import IconCursor from "../icons/cursor.astro";
+import IconAt from "../icons/at.astro";
+import IconArrow from "../icons/arrow.astro";
+---
+
+<Layout title="Indra | 万能工坊">
+  <main
+    id="content"
+    class="flex h-full min-h-screen flex-col items-center justify-center gap-6 py-10 sm:py-10 md:py-4 lg:gap-12 drawer drawer-end"
+  >
+    <div class="grid w-full max-w-max grid-cols-2 gap-4 md:grid-cols-4">
+      <section
+        id="about"
+        aria-label="About me"
+        class="group col-span-2 flex h-40 w-full rotate-0 sm:-rotate-2 flex-col rounded-3xl border-4 border-white bg-sky-50 sm:bg-stone-100 p-4 transition-all sm:hover:rotate-0 sm:hover:bg-sky-50"
+      >
+        <div
+          class="flex lg:items-start gap-4 flex-row items-center text-center"
+        >
+          <img
+            class="aspect-square size-10 rounded-full grayscale-0 scale-110 sm:grayscale sm:scale-100 transition-all sm:group-hover:scale-110 sm:group-hover:grayscale-0"
+            src="/images/me.jpg"
+            alt="avatar"
+          />
+          <div class="flex flex-col items-start">
+            <p
+              class="font-roboto-condensed font-semibold text-sky-600 sm:text-inherit sm:group-hover:text-sky-600"
+            >
+            Indra Tang
+            </p>
+            <p
+              class="font-roboto-condensed font-medium text-sky-600 sm:text-inherit sm:group-hover:text-sky-600"
+            >
+            Hardware & Software Engineer
+            </p>
+          </div>
+        </div>
+        <p
+          class="font-roboto-condensed font-thin text-sm max-w-72 text-sky-600 sm:text-inherit sm:group-hover:text-sky-600"
+        >
+        ZJU 自动化 - ITP，通信相关科研，绘画设计鬼才，自诩半个产品经理。想做播客，寻找创业idea和伙伴ing，contact me
+        </p>
+      </section>
+      <div
+        class="group overflow-hidden relative flex gap-1 h-40 w-36 flex-col rounded-3xl border-4 border-white sm:bg-stone-100 p-4 transition-all bg-rose-50 rotate-0 sm:rotate-1 sm:hover:rotate-0 sm:hover:bg-rose-50"
+      >
+        <img
+          class="aspect-square size-10 rounded-full grayscale-0 transition-all sm:grayscale sm:scale-100 sm:group-hover:scale-110 sm:group-hover:grayscale-0"
+          src="/images/avatar.jpg"
+          alt="redvike"
+        />
+        <p></p>
+        <p
+          class="font-roboto-condensed font-normal text-sm text-rose-700 sm:text-inherit sm:group-hover:text-rose-700"
+        >
+           软硬件入门教学
+        </p>
+        <p
+          class="flex gap-2 font-roboto-condensed font-normal text-sm text-rose-700 sm:text-inherit sm:group-hover:text-rose-700"
+        >
+          B站 
+          <a
+            data-ccursor
+            href="https://space.bilibili.com/3546706348084176"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Redvike (opens in a new tab)"
+            class="inline-flex z-10 rounded-md font-roboto-condensed font-medium text-sm group-hover:text-[#ff2123]"
+            >视频教程</a
+          >
+        </p>
+        <p
+          class="flex gap-2 font-roboto-condensed font-normal text-sm text-rose-700 sm:text-inherit sm:group-hover:text-rose-700"
+        >
+          本站 <a
+            data-ccursor
+            href="./zero2hero"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Redvike (opens in a new tab)"
+            class="inline-flex z-10 rounded-md font-roboto-condensed font-medium text-sm group-hover:text-[#ff2123]"
+            >文档教程</a
+          >
+        </p>
+        <IconCursor />
+      </div>
+      <div
+        class="group overflow-hidden flex h-40 w-36 flex-col gap-1 rounded-3xl border-4 border-white sm:bg-stone-100 p-4 transition-all rotate-0 bg-yellow-50 sm:-rotate-2 sm:hover:rotate-0 sm:hover:bg-yellow-50"
+      >
+        <img
+          class="aspect-square z-10 size-10 rounded-full transition-all grayscale-0 scale-110 sm:scale-100 sm:grayscale sm:group-hover:scale-110 sm:group-hover:grayscale-0"
+          src="/images/jike.png"
+          alt="jike"
+        />
+        <p
+          class="font-roboto-condensed z-10 font-normal text-sm text-yellow-600 sm:text-inherit sm:group-hover:text-yellow-600"
+        >
+          Let's talk about future!
+        </p>
+        <IconAt />
+        <a
+          data-ccursor
+          class="inline-flex items-center gap-2 font-roboto-condensed px-3 py-2 text-yellow-600 sm:text-inherit sm:group-hover:text-yellow-600 bg-white bg-opacity-20 border border-white border-opacity-30 rounded-lg shadow-lg backdrop-blur-sm hover:bg-opacity-30 transition-all duration-200 font-medium"
+          href="https://web.okjike.com/u/3aa99f78-10be-4c54-9b20-6e319456c415"
+          data-umami-event="Mail me click"
+          target="_blank"
+          id="mail"
+        >
+          Find me
+          <span
+            class="w-2 h-2 rounded-full bg-green-400 duration-1000 animate-pulse"
+          ></span>
+        </a>
+      </div>
+    </div>
+    <div class="flex flex-col items-center justify-center gap-4">
+      <h1
+        class="hover-grad-text font-roboto-condensed uppercase font-semibold text-5xl lg:text-[7rem] lg:leading-[8rem]"
+      >
+        Indra Tang
+      </h1>
+      <div
+        class="flex w-full items-center justify-center overflow-hidden gap-2"
+      >
+        <p
+          class="font-roboto-condensed font-medium lowercase text-2xl lg:text-[2rem] lg:leading-[2rem]"
+        >
+          deliver
+          <div class="group relative inline-block">
+            <div
+              class="transition-transform duration-100 group-hover:-translate-y-16"
+            >
+              <p
+                class="font-roboto-condensed font-medium lowercase text-2xl lg:text-[2rem] lg:leading-[2rem]"
+              >
+              hardware solutions.
+              </p>
+            </div>
+            <div
+              class="absolute inset-x-0 top-0 w-max translate-y-16 transition-transform duration-100 group-hover:translate-y-0"
+            >
+              <p
+                class="font-roboto-condensed font-medium lowercase text-2xl lg:text-[2rem] lg:leading-[2rem] bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500"
+              >
+                artfully.
+              </p>
+            </div>
+          </div>
+        </p>
+      </div>
+    </div>
+    <div class="grid w-full max-w-max grid-cols-2 gap-4 md:grid-cols-4">
+      <div
+        aria-label="Social media"
+        class="flex group flex-wrap h-40 w-36 flex-col rounded-3xl border-4 border-white p-4 transition-all rotate-0 bg-cyan-50 sm:bg-stone-100 sm:-rotate-2 sm:hover:rotate-0 sm:hover:bg-cyan-50"
+      >
+        {
+          SOCIALS.map((social) => (
+            <a
+              data-ccursor
+              class="flex flex-col basis-1/2 items-center justify-center rounded-md"
+              href={social.url}
+              target="_blank"
+              rel="noreferrer noopener"
+              aria-label={`${social.name} (opens in a new tab)`}
+              data-umami-event={`${social.name} click`}
+              id={social.name}
+            >
+              <Component component={social.icon} />
+            </a>
+          ))
+        }
+      </div>
+      <div class="drawer-content">
+        <label
+          for="experience-drawer"
+          class="group relative sm:cursor-none overflow-hidden py-4 px-0 flex h-40 w-36 flex-col gap-2 rounded-3xl border-4 border-white transition-all bg-violet-100 rotate-0 sm:-rotate-2 sm:hover:rotate-0 sm:bg-stone-100 sm:hover:bg-violet-100"
+          data-umami-event="Show my work click"
+          id="experience"
+        >
+          <span
+            class="inline-flex sm:cursor-none gap-3 items-center text-3xl font-bold font-serif italic sm:not-italic sm:group-hover:italic text-pink-500 sm:text-zinc-300 sm:group-hover:text-pink-500 rounded-lg transition-all duration-100"
+          >
+            Show
+            <IconArrow />
+          </span>
+          <span
+            class="font-serif sm:cursor-none italic sm:not-italic sm:group-hover:italic text-3xl font-bold transition-all duration-100 text-pink-500 sm:text-zinc-300 sm:group-hover:text-pink-500"
+            >My</span
+          >
+          <span
+            class="font-serif sm:cursor-none italic sm:not-italic sm:group-hover:italic text-3xl font-bold transition-all duration-100 text-pink-500 sm:text-zinc-300 sm:group-hover:text-pink-500"
+            >Work</span
+          >
+        </label>
+      </div>
+      <a
+        href="https://maps.app.goo.gl/RzhjNbsZLzvZsuk16"
+        target="_blank"
+        rel="noreferrer"
+        aria-label="Florida, USA"
+        class="relative sm:cursor-none group overflow-hidden col-span-2 h-40 w-full rounded-3xl border-4 border-white p-4 transition-all rotate-0 sm:rotate-2 sm:hover:rotate-0"
+      >
+        <div
+          class="absolute inset-0 z-10 bg-[url('/images/map.png')] bg-center bg-cover bg-no-repeat filter grayscale-0 sm:grayscale sm:group-hover:grayscale-0"
+        >
+        </div>
+        <div
+          class="absolute z-30 left-1/2 top-1/2 h-[20px] w-[20px] -translate-x-1/2 -translate-y-1/2 animate-marker rounded-full bg-blue-500"
+        >
+        </div>
+        <div
+          class="absolute left-1/2 top-1/2 z-30 h-[20px] w-[20px] -translate-x-1/2 -translate-y-1/2 rounded-full border-[3px] border-neutral-50 bg-blue-500 shadow-2xl"
+        >
+        </div>
+        <span
+          class="absolute left-4/2 top-1 z-30 font-semibold font-roboto-condensed text-lg text-white"
+          >Hangzhou, China</span
+        >
+      </a>
+    </div>
+    <Drawer />
+    <!-- <button
+      id="openUpdateModal"
+      class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+    >
+      查看更新日志
+    </button> -->
+    <UpdateModal updates={updateHistory} />
+  </main>
+</Layout>
+
+<style>
+  /* 可以添加一些过渡动画 */
+  #updateModal {
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  #updateModal.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  #updateModal:not(.hidden) {
+    opacity: 1;
+  }
+</style>
